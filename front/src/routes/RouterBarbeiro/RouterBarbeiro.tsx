@@ -1,11 +1,9 @@
 import React from "react";
 
 import { Route, Routes } from "react-router-dom";
-
-import CadastroBarbeiro from "../../Pages/Barbeiro/CadastroBarbeiro/CadastroBarbeiro";
-import LoginBarbeiro from "../../Pages/Barbeiro/LoginBarbeiro/LoginBarbeiro";
-import NavBar from "../../Pages/Barbeiro/Components/NavBarBabeiro/NavBar";
-import Barbeiro from "../../Pages/Barbeiro/Barbeiro";
+import CadastroBarbeiro from "../../pages/Barbeiro/CadastroBarbeiro/CadastroBarbeiro";
+import LoginBarbeiro from "../../pages/Barbeiro/LoginBarbeiro/LoginBarbeiro";
+import Barbeiro from "../../pages/Barbeiro/Barbeiro";
 
 const RouterBarbeiro = () => {
   return (

@@ -16,7 +16,7 @@ const Home = () => {
     <ThemeProvider theme={Light}>
       <Header />
       <Banner />
-      <Stack spacing={4}>
+      <Stack spacing={8}>
         <Sobre />
         <Informacoes />
         <Galeria />
