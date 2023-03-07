@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 
 import Dark from "../../../styles/themes/Dark/Dark";
 import FormCadastroCliente from "./FormCadastroCliente/FormCadastroCliente";
-import HeaderLogin from "../../../Components/HeaderLogin/HeaderLogin";
+import HeaderLogin from "../../../components/HeaderLogin/HeaderLogin";
 
 import useStyles from "./styled";
 

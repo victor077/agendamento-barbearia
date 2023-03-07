@@ -6,7 +6,7 @@ import { ThemeProvider } from "@mui/material/styles";
 
 import Dark from "../../../styles/themes/Dark/Dark";
 import FormCadastro from "./FormCadastro/FormCadastro";
-import HeaderLogin from "../../../Components/HeaderLogin/HeaderLogin";
+import HeaderLogin from "../../../components/HeaderLogin/HeaderLogin";
 import StepperContextProvider, {
   PassoValue,
 } from "./Components/StepperCadastro/Context/StepperContextProvider";

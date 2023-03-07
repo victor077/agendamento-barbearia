@@ -9,8 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { FormValuesLoginBarbeiro, validationSchema } from "./validate";
-import { InputStyled } from "../../../../Components/InputStyled/styled";
-import { LabelStyled } from "../../../../Components/LabelStyled/styled";
+import { InputStyled } from "../../../../components/InputStyled/styled";
+import { LabelStyled } from "../../../../components/LabelStyled/styled";
 
 import useStyles from "./styled";
 

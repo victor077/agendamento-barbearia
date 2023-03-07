@@ -10,8 +10,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { FormValuesCadastroCliente, validationSchema } from "./validate";
-import { LabelStyled } from "../../../../Components/LabelStyled/styled";
-import { InputStyled } from "../../../../Components/InputStyled/styled";
+import { LabelStyled } from "../../../../components/LabelStyled/styled";
+import { InputStyled } from "../../../../components/InputStyled/styled";
 
 import useStyles from "./styled";
 

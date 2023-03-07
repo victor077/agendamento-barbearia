@@ -10,8 +10,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { BarbeariaFormValue, validationSchema } from "./validate";
-import { InputStyled } from "../../../../../Components/InputStyled/styled";
-import { LabelStyled } from "../../../../../Components/LabelStyled/styled";
+import { InputStyled } from "../../../../../components/InputStyled/styled";
+import { LabelStyled } from "../../../../../components/LabelStyled/styled";
 import StepperWrapper from "../../Components/StepperCadastro/StepperWapper/StepperWapper";
 import { useStepper } from "../../Components/StepperCadastro/Context/StepperContextProvider";
 
