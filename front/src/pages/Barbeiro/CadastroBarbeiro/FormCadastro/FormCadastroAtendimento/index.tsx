@@ -7,7 +7,7 @@ import Sabado from "./Sabado/Sabado";
 import Segunda from "./Segunda/Segunda";
 import Sexta from "./Sexta/Sexta";
 import StepperWrapper from "../../Components/StepperCadastro/StepperWapper/StepperWapper";
-import TabWrapper from "../../../../../Components/TabWrapper/TabWrapper";
+import TabWrapper from "../../../../../components/TabWrapper/TabWrapper";
 import Terca from "./Terca/Terca";
 
 const index = () => {

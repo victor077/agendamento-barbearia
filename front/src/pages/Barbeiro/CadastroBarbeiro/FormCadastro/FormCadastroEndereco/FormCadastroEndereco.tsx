@@ -10,9 +10,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import StepperWrapper from "../../Components/StepperCadastro/StepperWapper/StepperWapper";
-import { LabelStyled } from "../../../../../Components/LabelStyled/styled";
+import { LabelStyled } from "../../../../../components/LabelStyled/styled";
 import { useStepper } from "../../Components/StepperCadastro/Context/StepperContextProvider";
-import { InputStyled } from "../../../../../Components/InputStyled/styled";
+import { InputStyled } from "../../../../../components/InputStyled/styled";
 import { EnderecoFormValue, validationSchema } from "./validate";
 
 import useStyles from "./styled";
