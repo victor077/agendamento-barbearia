@@ -21,6 +21,11 @@ const FormLoginCliente = () => {
   const handleClickJaCadastrado = () => {
     navigate("../login/cliente");
   };
+
+  const handleClickLogin = () => {
+    navigate("../corta-ai/home");
+  };
+
   const formCadastroCliente = useForm<FormValuesLoginCliente>({
     mode: "onChange",
     resolver: zodResolver(validationSchema),
@@ -38,7 +43,10 @@ const FormLoginCliente = () => {
           <Grid sx={styled.containerGrid} container spacing={4}>
             <Grid item xs={12}>
               <LabelStyled>Email</LabelStyled>
-              <InputStyled {...register("email")} placeholder="Digite seu email"/>
+              <InputStyled
+                {...register("email")}
+                placeholder="Digite seu email"
+              />
             </Grid>
             <Grid item xs={12}>
               <LabelStyled>Senha</LabelStyled>
@@ -49,6 +57,7 @@ const FormLoginCliente = () => {
             </Grid>
             <Grid item xs={12}>
               <Button
+                onClick={handleClickLogin}
                 type="submit"
                 variant="contained"
                 color="secondary"

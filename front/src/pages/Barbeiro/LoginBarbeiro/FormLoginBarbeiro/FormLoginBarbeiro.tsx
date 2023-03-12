@@ -21,6 +21,11 @@ const FormLoginBarbeiro = () => {
   const handleClickJaCadastrado = () => {
     navigate("../");
   };
+
+  const handleClickLogin = () => {
+    navigate("../corta-ai/home");
+  };
+
   const formCadastroBarbeiro = useForm<FormValuesLoginBarbeiro>({
     mode: "onChange",
     resolver: zodResolver(validationSchema),
@@ -38,14 +43,22 @@ const FormLoginBarbeiro = () => {
           <Grid sx={styled.containerGrid} container spacing={4}>
             <Grid item xs={12}>
               <LabelStyled>Email</LabelStyled>
-              <InputStyled  {...register("email")} placeholder="Digite seu email" />
+              <InputStyled
+                {...register("email")}
+                placeholder="Digite seu email"
+              />
             </Grid>
             <Grid item xs={12}>
               <LabelStyled>Senha</LabelStyled>
-              <InputStyled {...register("senha")} type="password" placeholder="Digite sua senha" />
+              <InputStyled
+                {...register("senha")}
+                type="password"
+                placeholder="Digite sua senha"
+              />
             </Grid>
             <Grid item xs={12}>
               <Button
+                onClick={handleClickLogin}
                 type="submit"
                 variant="contained"
                 color="secondary"
