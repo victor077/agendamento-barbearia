@@ -6,8 +6,7 @@ const useStyles = () => ({
   containerCadastro: {
     display: "flex",
     justifyContent: "center",
-    marginBottom: "4rem",
-    // width: "50%"
+    marginBottom: "4rem"
   },
   containerGrid: {
     display: "flex",

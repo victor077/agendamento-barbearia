@@ -54,13 +54,7 @@ const FormCadastroCliente = () => {
                 </Typography>
               )}
             </Grid>
-            <Grid sx={styled.textFieldContainer} item xs={6}>
-              <LabelStyled>Sobrenome</LabelStyled>
-              <InputStyled
-                {...register("sobrenome")}
-                placeholder="Digite seu sobrenome"
-              />
-            </Grid>
+
             <Grid sx={styled.textFieldContainer} item xs={6}>
               <LabelStyled>Email</LabelStyled>
               <InputStyled
@@ -87,7 +81,10 @@ const FormCadastroCliente = () => {
             </Grid>
             <Grid sx={styled.textFieldContainer} item xs={6}>
               <LabelStyled>Senha</LabelStyled>
-              <InputStyled {...register("senha")} placeholder="Digite sua senha" />
+              <InputStyled
+                {...register("senha")}
+                placeholder="Digite sua senha"
+              />
               {formState.errors?.senha?.message && (
                 <Typography sx={styled.error}>
                   {String(formState.errors?.senha?.message)}
@@ -96,7 +93,10 @@ const FormCadastroCliente = () => {
             </Grid>
             <Grid sx={styled.textFieldContainer} item xs={6}>
               <LabelStyled>Confirmar Senha</LabelStyled>
-              <InputStyled {...register("confirmarSenha")} placeholder="Confirme sua senha" />
+              <InputStyled
+                {...register("confirmarSenha")}
+                placeholder="Confirme sua senha"
+              />
               {formState.errors?.confirmarSenha?.message && (
                 <Typography sx={styled.error}>
                   {String(formState.errors?.confirmarSenha?.message)}

@@ -5,9 +5,14 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import useStyles from "./styled";
 import { Button, Card, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const Banner = () => {
   const styled = useStyles();
+  const navigate = useNavigate();
+  const handleNavigateLogin = () => {
+    navigate("login/cliente");
+  };
   return (
     <Card sx={styled.banner}>
       <Box sx={styled.containerInformations}>
@@ -19,7 +24,13 @@ const Banner = () => {
             Evolua e mostre o seu negócio para todas as quebradas
           </Typography>
           <Box>
-            <Button sx={styled.button} variant="contained">Junte-se a nós</Button>
+            <Button
+              onClick={handleNavigateLogin}
+              sx={styled.button}
+              variant="contained"
+            >
+              Junte-se a nós
+            </Button>
           </Box>
         </Box>
       </Box>
