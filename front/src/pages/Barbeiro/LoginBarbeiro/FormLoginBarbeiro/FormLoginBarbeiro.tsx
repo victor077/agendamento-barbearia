@@ -21,6 +21,10 @@ const FormLoginBarbeiro = () => {
   const handleClickJaCadastrado = () => {
     navigate("../");
   };
+
+  const handleNavigateHome = () => {
+    navigate("/cliente/seus-agendamentos");
+  };
   const formCadastroBarbeiro = useForm<FormValuesLoginBarbeiro>({
     mode: "onChange",
     resolver: zodResolver(validationSchema),
@@ -50,6 +54,7 @@ const FormLoginBarbeiro = () => {
                 variant="contained"
                 color="secondary"
                 sx={styled.entrar}
+                onClick={handleNavigateHome}
               >
                 Entrar
               </Button>

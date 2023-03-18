@@ -78,7 +78,15 @@ const BarbeariaAgendamento = () => {
                     </Typography>
                   </TableCell>
                   <TableCell align="center">
-                    <Button>Cancelar</Button>
+                    <Button
+                      variant="contained"
+                      style={{
+                        backgroundColor: "#9D641F",
+                        color: "#fAfafa",
+                      }}
+                    >
+                      Cancelar
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}

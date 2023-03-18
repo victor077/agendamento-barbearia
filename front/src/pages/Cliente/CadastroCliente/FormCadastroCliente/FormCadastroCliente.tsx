@@ -14,10 +14,24 @@ import { LabelStyled } from "../../../../components/LabelStyled/styled";
 import { InputStyled } from "../../../../components/InputStyled/styled";
 
 import useStyles from "./styled";
+import { useMutation } from "react-query";
+import { CadastroCliente } from "../../../../Packages/services/Cliente/AuthenticationCliente/Models/CadastroCliente";
+import { AuthenticationClienteServe } from "../../../../Packages/services/Cliente/AuthenticationCliente";
 
 const FormCadastroCliente = () => {
   const styled = useStyles();
   const navigate = useNavigate();
+
+  const { mutate, data } = useMutation(
+    (entrada: CadastroCliente) =>
+      AuthenticationClienteServe.cadastrarCliente(entrada),
+    {
+      onSuccess: (response) => {
+      
+      },
+      onError: () => {},
+    }
+  );
 
   const handleClickJaCadastrado = () => {
     navigate("../login/cliente");
@@ -30,7 +44,14 @@ const FormCadastroCliente = () => {
   const { handleSubmit, register, formState } = formCadastroCliente;
   const handleSubmitCadastro = useCallback(
     (values: FormValuesCadastroCliente) => {
-      console.log(values);
+      const token = 
+      mutate({
+        firstName: values.firstName,
+        email: values.email,
+        celular: values.celular,
+        lastName: values.lastName,
+        password: values.password,
+      });
     },
     []
   );
@@ -45,12 +66,12 @@ const FormCadastroCliente = () => {
             <Grid sx={styled.textFieldContainer} item xs={6}>
               <LabelStyled>Nome</LabelStyled>
               <InputStyled
-                {...register("nome")}
+                {...register("firstName")}
                 placeholder="Digite seu nome"
               />
-              {formState.errors?.nome?.message && (
+              {formState.errors?.firstName?.message && (
                 <Typography sx={styled.error}>
-                  {String(formState.errors?.nome?.message)}
+                  {String(formState.errors?.firstName?.message)}
                 </Typography>
               )}
             </Grid>
@@ -82,12 +103,12 @@ const FormCadastroCliente = () => {
             <Grid sx={styled.textFieldContainer} item xs={6}>
               <LabelStyled>Senha</LabelStyled>
               <InputStyled
-                {...register("senha")}
+                {...register("password")}
                 placeholder="Digite sua senha"
               />
-              {formState.errors?.senha?.message && (
+              {formState.errors?.password?.message && (
                 <Typography sx={styled.error}>
-                  {String(formState.errors?.senha?.message)}
+                  {String(formState.errors?.password?.message)}
                 </Typography>
               )}
             </Grid>

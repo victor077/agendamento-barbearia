@@ -12,4 +12,4 @@ export const validationSchema = zod.object({
   path: ["confirmarSenha"],
 })
 
-export type FormValuesCadastroBarbeiro = zod.infer<typeof validationSchema> 
+export type FormValuesCadastroBarbeaira = zod.infer<typeof validationSchema> 
