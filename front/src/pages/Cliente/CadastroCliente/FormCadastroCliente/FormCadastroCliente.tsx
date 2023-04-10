@@ -26,9 +26,7 @@ const FormCadastroCliente = () => {
     (entrada: CadastroCliente) =>
       AuthenticationClienteServe.cadastrarCliente(entrada),
     {
-      onSuccess: (response) => {
-      
-      },
+      onSuccess: (response) => {},
       onError: () => {},
     }
   );
@@ -44,7 +42,6 @@ const FormCadastroCliente = () => {
   const { handleSubmit, register, formState } = formCadastroCliente;
   const handleSubmitCadastro = useCallback(
     (values: FormValuesCadastroCliente) => {
-      const token = 
       mutate({
         firstName: values.firstName,
         email: values.email,
