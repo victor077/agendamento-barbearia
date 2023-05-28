@@ -25,4 +25,17 @@ export const InputStyledBarbeiro = styled.input`
  
 `
 
+export const InputStyledTornaBarbeiro = styled.input`
+padding: 0.8rem;
+  /* box-shadow: 1px 3px 3px rgba(19,19,19,0.79); */
+  border-radius: 4px;
+  font-size: 13pt;
+  background-color: hidden;
+  outline: none;
+  transition: all .3s ease-out;
+  border: solid  1.6px #9D641F;
+  min-width: 290px;
+
+`
+
 

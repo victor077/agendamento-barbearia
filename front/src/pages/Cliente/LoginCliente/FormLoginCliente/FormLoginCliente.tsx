@@ -13,10 +13,15 @@ import { InputStyled } from "../../../../components/InputStyled/styled";
 import { LabelStyled } from "../../../../components/LabelStyled/styled";
 
 import useStyles from "./styled";
+import { useAuthentication } from "../../../Context/AuthenticationContext";
+import { useMutation } from "react-query";
+import { LoginCliente } from "../../../../Packages/services/Cliente/AuthenticationCliente/Models/LoginCliente";
+import { AuthenticationClienteServe } from "../../../../Packages/services/Cliente/AuthenticationCliente";
 
 const FormLoginCliente = () => {
   const styled = useStyles();
   const navigate = useNavigate();
+  const { tokenString } = useAuthentication();
 
   const handleClickJaCadastrado = () => {
     navigate("../login/cliente");
@@ -30,11 +35,25 @@ const FormLoginCliente = () => {
     mode: "onChange",
     resolver: zodResolver(validationSchema),
   });
-
+  const { mutate, data } = useMutation(
+    (entrada: LoginCliente) => AuthenticationClienteServe.logarCliente(entrada),
+    {
+      onSuccess: (response) => {},
+      onError: () => {},
+    }
+  );
   const { handleSubmit, register, formState } = formCadastroCliente;
-  const handleSubmitLogin = useCallback((values: FormValuesLoginCliente) => {
-    console.log(values);
-  }, []);
+  const handleSubmitLogin = useCallback(
+    (values: FormValuesLoginCliente) => {
+      mutate({
+        email: values.email,
+        password: values.senha,
+      });
+      console.log("token", tokenString);
+      console.log("submit", values);
+    },
+    [mutate]
+  );
 
   return (
     <form onSubmit={handleSubmit(handleSubmitLogin)}>
@@ -43,6 +62,10 @@ const FormLoginCliente = () => {
           <Grid sx={styled.containerGrid} container spacing={4}>
             <Grid item xs={12}>
               <LabelStyled>Email</LabelStyled>
+              <InputStyled
+                {...register("email")}
+                placeholder="Digite seu email"
+              />
               <InputStyled
                 {...register("email")}
                 placeholder="Digite seu email"
@@ -62,6 +85,7 @@ const FormLoginCliente = () => {
                 variant="contained"
                 color="secondary"
                 sx={styled.entrar}
+                onClick={handleNavigateHome}
               >
                 Entrar
               </Button>

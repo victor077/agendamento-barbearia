@@ -1,4 +1,4 @@
-import login from "../../../assets/login.png";
+import login from "../../../assets/loginBarbearia.png";
 
 const useStyles = () => ({
   body: {

@@ -14,6 +14,7 @@ const Header = () => {
       <Box sx={styled.header}>
         <Typography sx={styled.corta}>
           Corta <Typography sx={styled.ai}>Ai</Typography>
+          <Typography style={{ color: "red" }}>2</Typography>
         </Typography>
         <Navbar />
       </Box>

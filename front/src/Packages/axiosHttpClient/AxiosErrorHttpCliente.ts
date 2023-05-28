@@ -4,9 +4,6 @@ import { HttpResponse } from "../protocolosHtpp/http_response";
 import { AxiosErrorHttpClient } from "./AxiosHttpClient";
 import { HttpConfig } from "./Types";
 
-
-
-
 export class AxiosHttpClient implements IHttpClient<any, any> {
   private instance: AxiosInstance;
   private httpConfig: HttpConfig;

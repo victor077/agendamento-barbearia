@@ -20,6 +20,12 @@ const HeaderCliente = () => {
         >
           <Typography sx={styled.titulo}>Seus Agendamentos</Typography>
         </NavLink>
+        <NavLink
+          to="../cliente/se-tornar-barbeiro"
+          style={{ textDecoration: "none" }}
+        >
+          <Typography sx={styled.titulo}>Se Tornar Barbeiro</Typography>
+        </NavLink>
       </Box>
       <Box sx={styled.bar}>
         <NavLink to="../" style={{ textDecoration: "none" }}>

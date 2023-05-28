@@ -6,7 +6,7 @@ export const Light = createTheme({
     MuiButton: {
       styleOverrides: {
         contained: {
-          backgroundColor: "#DDD750",
+          // backgroundColor: "#DDD750",
           color: "#000",
           fontSize: "10pt",
           fontWeight: "bold",

@@ -63,6 +63,7 @@ const FormLoginBarbeiro = () => {
                 variant="contained"
                 color="secondary"
                 sx={styled.entrar}
+                onClick={handleNavigateHome}
               >
                 Entrar
               </Button>
