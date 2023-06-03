@@ -1,11 +1,12 @@
 import { IHttpClient } from "../../../protocolosHtpp/IHttpCliente";
 import { HttpResponse } from "../../../protocolosHtpp/http_response";
 import { BaseApiService } from "../../BaseApiService";
+import { AuthResponse } from "./Models/AuthResponse";
 import { CadastroCliente } from "./Models/CadastroCliente";
 import { LoginCliente } from "./Models/LoginCliente";
 import { IAuthenticationCliente } from "./type";
 
-export class Authenticationliente extends BaseApiService implements IAuthenticationCliente {
+export class Authenticationcliente extends BaseApiService implements IAuthenticationCliente {
 
   private static instance: IAuthenticationCliente;
 
@@ -14,17 +15,17 @@ export class Authenticationliente extends BaseApiService implements IAuthenticat
   }
 
   static create(httpClient: IHttpClient<any, any>) {
-    if (!Authenticationliente.instance) {
-      Authenticationliente.instance = new Authenticationliente(httpClient);
+    if (!Authenticationcliente.instance) {
+      Authenticationcliente.instance = new Authenticationcliente(httpClient);
     }
-    return Authenticationliente.instance;
+    return Authenticationcliente.instance;
   }
 
-  async logarCliente(entrada: LoginCliente): Promise<HttpResponse<void>> {
+  async logarCliente(entrada: LoginCliente): Promise<HttpResponse<AuthResponse>> {
     try {
       var httpResponse = await this.httpClient.post({
         body: entrada,
-        url: "/api/v1/auth/register"
+        url: "/api/v1/auth/authenticate"
 
       });
       return httpResponse;
@@ -34,11 +35,11 @@ export class Authenticationliente extends BaseApiService implements IAuthenticat
     }
   }
 
-  async cadastrarCliente(entrada: CadastroCliente): Promise<HttpResponse<void>> {
+  async cadastrarCliente(entrada: CadastroCliente): Promise<HttpResponse<AuthResponse>> {
     try {
       var httpResponse = await this.httpClient.post({
         body: entrada,
-        url: "/api/v1/auth/authenticate"
+        url: "/api/v1/auth/users"
       });
 
       return httpResponse;

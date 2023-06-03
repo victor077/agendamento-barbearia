@@ -1,13 +1,13 @@
 import { AxiosHttpClient } from "./AxiosErrorHttpCliente";
 
 const httpClient = AxiosHttpClient.create({
-  baseUrl: "http://localhost:5555",
-  headers: [
-    {
-      Authorization: () =>
-        `Bearer ${JSON.parse(localStorage.getItem("sessionToken") ?? "")}`,
-    },
-  ],
+  baseUrl: "http://34.206.241.189:8080/",
+  // headers: [
+  //   {
+  //     Authorization: () =>
+  //       `Bearer ${JSON.parse(localStorage.getItem("sessionToken") ?? "")}`,
+  //   },
+  // ],
 });
 
 export { httpClient };

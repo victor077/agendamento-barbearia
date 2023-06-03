@@ -58,12 +58,11 @@ const FormLoginBarbeiro = () => {
             </Grid>
             <Grid item xs={12}>
               <Button
-                onClick={handleClickLogin}
+                // onClick={handleClickLogin}
                 type="submit"
                 variant="contained"
                 color="secondary"
                 sx={styled.entrar}
-                onClick={handleNavigateHome}
               >
                 Entrar
               </Button>

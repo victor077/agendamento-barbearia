@@ -27,7 +27,11 @@ const FormLoginCliente = () => {
     navigate("../login/cliente");
   };
 
-  const handleClickLogin = () => {
+  const handleNavigationCliente = () => {
+    navigate("../cliente/barbearias");
+  };
+
+  const handleNavigateBarbeiro = () => {
     navigate("../corta-ai/home");
   };
 
@@ -35,11 +39,20 @@ const FormLoginCliente = () => {
     mode: "onChange",
     resolver: zodResolver(validationSchema),
   });
-  const { mutate, data } = useMutation(
+  const { mutate } = useMutation(
     (entrada: LoginCliente) => AuthenticationClienteServe.logarCliente(entrada),
     {
-      onSuccess: (response) => {},
-      onError: () => {},
+      onSuccess: (response) => {
+        const { role } = response.body
+        if (role === "USER")
+          handleNavigationCliente()
+        else {
+          handleNavigateBarbeiro()
+        }
+        console.log(response.body);
+
+      },
+      onError: () => { },
     }
   );
   const { handleSubmit, register, formState } = formCadastroCliente;
@@ -66,10 +79,6 @@ const FormLoginCliente = () => {
                 {...register("email")}
                 placeholder="Digite seu email"
               />
-              <InputStyled
-                {...register("email")}
-                placeholder="Digite seu email"
-              />
             </Grid>
             <Grid item xs={12}>
               <LabelStyled>Senha</LabelStyled>
@@ -80,12 +89,10 @@ const FormLoginCliente = () => {
             </Grid>
             <Grid item xs={12}>
               <Button
-                onClick={handleClickLogin}
                 type="submit"
                 variant="contained"
                 color="secondary"
                 sx={styled.entrar}
-                onClick={handleNavigateHome}
               >
                 Entrar
               </Button>

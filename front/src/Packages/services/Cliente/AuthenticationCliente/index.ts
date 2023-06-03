@@ -1,6 +1,6 @@
 import { httpClient } from "../../../axiosHttpClient";
-import { Authenticationliente } from "./AuthenticationCliente";
+import { Authenticationcliente } from "./AuthenticationCliente";
 
-export const AuthenticationClienteServe = Authenticationliente.create(
+export const AuthenticationClienteServe = Authenticationcliente.create(
   httpClient
 )

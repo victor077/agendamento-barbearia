@@ -13,6 +13,9 @@ import Typography from "@mui/material/Typography";
 import useStyles from "./styled";
 import { useNavigate } from "react-router-dom";
 import HeaderCliente from "../Components/HeaderCliente/HeaderCliente";
+import { useQuery } from "react-query";
+import { BarbeariaClienteServe } from "../../../Packages/services/Cliente/Barbearias";
+import { BarbeariaResponse } from "../../../Packages/services/Cliente/Barbearias/models/BarbeariasResponse";
 
 const chamada = [
   {
@@ -40,6 +43,11 @@ const chamada = [
     atendimento: "Fechado",
   },
 ];
+
+
+// const { data } = useQuery({}['consultar-barbearias', () => BarbeariaClienteServe.getBarbearias()])
+// console.log(data);
+
 
 const Barbearias = () => {
   const styled = useStyles();

@@ -14,22 +14,25 @@ import { LabelStyled } from "../../../../components/LabelStyled/styled";
 import { InputStyled } from "../../../../components/InputStyled/styled";
 
 import useStyles from "./styled";
-import { useMutation } from "react-query";
-import { CadastroCliente } from "../../../../Packages/services/Cliente/AuthenticationCliente/Models/CadastroCliente";
-import { AuthenticationClienteServe } from "../../../../Packages/services/Cliente/AuthenticationCliente";
 
 const FormCadastroCliente = () => {
   const styled = useStyles();
   const navigate = useNavigate();
 
-  const { mutate, data } = useMutation(
-    (entrada: CadastroCliente) =>
-      AuthenticationClienteServe.cadastrarCliente(entrada),
-    {
-      onSuccess: (response) => {},
-      onError: () => {},
-    }
-  );
+  const handleNavigationHome = () => {
+    navigate("../corta-ai/home");
+  }
+
+  // const { mutate } = useMutation(
+  //   (entrada: CadastroCliente) =>
+  //     AuthenticationClienteServe.cadastrarCliente(entrada),
+  //   {
+  //     onSuccess: (response) => {
+  //       handleNavigationHome()
+  //      },
+  //     onError: () => { },
+  //   }
+  // );
 
   const handleClickJaCadastrado = () => {
     navigate("../login/cliente");
@@ -42,13 +45,12 @@ const FormCadastroCliente = () => {
   const { handleSubmit, register, formState } = formCadastroCliente;
   const handleSubmitCadastro = useCallback(
     (values: FormValuesCadastroCliente) => {
-      mutate({
-        firstName: values.firstName,
-        email: values.email,
-        celular: values.celular,
-        lastName: values.lastName,
-        password: values.password,
-      });
+      // mutate({
+      //   name: values.firstName,
+      //   email: values.email,
+      //   phone: values.celular,
+      //   password: values.password,
+      // });
     },
     []
   );
