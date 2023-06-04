@@ -44,15 +44,17 @@ const FormLoginCliente = () => {
     {
       onSuccess: (response) => {
         const { role } = response.body
-        if (role === "USER")
+         if (role === "USER")
           handleNavigationCliente()
-        else {
-          handleNavigateBarbeiro()
-        }
+         else {
+           handleNavigateBarbeiro()
+         }
         console.log(response.body);
 
       },
-      onError: () => { },
+      onError: () => { 
+        alert("Senha ou email invalido")
+      },
     }
   );
   const { handleSubmit, register, formState } = formCadastroCliente;
