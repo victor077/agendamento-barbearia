@@ -22,8 +22,8 @@ const useStyles = () => ({
     alignItems: "center",
   },
   avatar: {
-    width: 110,
-    height: 110
+    width: 150,
+    height: 150
   },
   containerInformacoes: {
     display: "flex",

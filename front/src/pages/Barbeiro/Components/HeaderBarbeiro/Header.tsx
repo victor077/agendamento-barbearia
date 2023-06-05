@@ -21,7 +21,7 @@ const HeaderBarbeiro = ({ title, name }: HeaderBarbeiro) => {
           <Typography sx={styled.titulo}>{title}</Typography>
         </Box>
         <Box sx={styled.containerPerfil}>
-          <Typography sx={styled.perfil}>Olá {name}</Typography>
+          <Typography sx={styled.perfil}>Seja bem vindo</Typography>
           <ListItemAvatar>
             <Avatar sx={styled.avatar} src="/static/images/avatar/1.jpg" />
           </ListItemAvatar>

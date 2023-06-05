@@ -38,9 +38,7 @@ const HomeBarbeiro = () => {
   return (
     <>
       <HeaderBarbeiro title="Próximos Cortes" name="Victor" />
-      {chamada.map((cortes) => (
-        <CortesBarbeiros chamada={cortes} />
-      ))}
+      <CortesBarbeiros />
     </>
   );
 };

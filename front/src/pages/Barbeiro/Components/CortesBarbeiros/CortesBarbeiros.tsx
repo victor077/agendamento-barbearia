@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import AutoDeleteOutlinedIcon from "@mui/icons-material/AutoDeleteOutlined";
@@ -12,64 +12,88 @@ import Typography from "@mui/material/Typography";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 
 import useStyles from "./styled";
+import { collection, getDocs, limit, query, where } from "firebase/firestore";
+import { db } from "../../../../firebase";
 
 type ChamadaType = {
   id: number;
-  nome: string;
-  horario: string;
-  servico: string;
-  preco: string;
+  barbeiro: string;
+  data: string;
+  hora: string;
+  cliente: string;
 };
 
-type CortesBarbeirosProps = {
-  chamada: ChamadaType;
-};
-
-const CortesBarbeiros = ({ chamada }: CortesBarbeirosProps) => {
+const CortesBarbeiros = () => {
+  const [agendamento, setAgendamento] = useState<ChamadaType[]>([]);
   const styled = useStyles();
 
+  useEffect(() => {
+    const consultarAgendamento = collection(db, "agendamento");
+    const data = query(
+      consultarAgendamento,
+      where("barbeiro", "==", "Barbearia Foxtrot"),
+      limit(10)
+    );
+
+    const getAgendamentos = async () => {
+      const querySnapshot = await getDocs(data);
+      if (!querySnapshot.empty) {
+        const agendamentos = querySnapshot.docs.map((doc) => {
+          const { cliente, id, barbeiro, data, hora } = doc.data();
+          return { cliente, id, barbeiro, data, hora };
+        });
+        setAgendamento(agendamentos);
+      } else {
+        alert("Nenhum agendamento encontrado");
+      }
+    };
+
+    getAgendamentos();
+  }, []);
+
   return (
-    <Grid>
-      <Grid item xs={12}>
-        <Paper sx={styled.paper} elevation={2} style={{}}>
-          <Box sx={styled.containerCortes}>
-            <Box sx={styled.cortes}>
-              <List sx={styled.lista}>
-                <Box>
-                  <Typography>{chamada.nome}</Typography>
+    <>
+      {agendamento.map((item) => (
+        <Grid>
+          <Grid item xs={12}>
+            <Paper sx={styled.paper} elevation={2} style={{}}>
+              <Box sx={styled.containerCortes}>
+                <Box sx={styled.cortes}>
+                  <List sx={styled.lista}>
+                    <Box>
+                      <Typography>{item.cliente}</Typography>
+                    </Box>
+                    <Box>
+                      <Typography>{item.data}</Typography>
+                    </Box>
+                    <Box>
+                      <Typography>{item.hora}</Typography>
+                    </Box>
+                  </List>
+                  <Box>
+                    <Tooltip title="Conversar com o cliente">
+                      <IconButton>
+                        <WhatsAppIcon sx={styled.whats} />
+                      </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Editar agendamento">
+                      <IconButton>
+                        <AppRegistrationIcon sx={styled.edit} />
+                      </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Cancelar agendamento">
+                      <IconButton>
+                        <AutoDeleteOutlinedIcon sx={styled.delete} />
+                      </IconButton>
+                    </Tooltip>
+                  </Box>
                 </Box>
-                <Box>
-                  <Typography>{chamada.horario}</Typography>
-                </Box>
-                <Box>
-                  <Typography>{chamada.servico}</Typography>
-                </Box>
-                <Box>
-                  <Typography> R${chamada.preco}</Typography>
-                </Box>
-              </List>
-              <Box>
-                <Tooltip title="Conversar com o cliente">
-                  <IconButton>
-                    <WhatsAppIcon sx={styled.whats} />
-                  </IconButton>
-                </Tooltip>
-                <Tooltip title="Editar agendamento">
-                  <IconButton>
-                    <AppRegistrationIcon sx={styled.edit} />
-                  </IconButton>
-                </Tooltip>
-                <Tooltip title="Cancelar agendamento">
-                  <IconButton>
-                    <AutoDeleteOutlinedIcon sx={styled.delete} />
-                  </IconButton>
-                </Tooltip>
               </Box>
-            </Box>
-          </Box>
-        </Paper>
-      </Grid>
-    </Grid>
+            </Paper>
+          </Grid>
+        </Grid>
+      ))}
+    </>
   );
 };
 

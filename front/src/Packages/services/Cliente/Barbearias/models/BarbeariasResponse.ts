@@ -1,9 +1,12 @@
-import { AddressRequest } from "./AddresRequest"
+import { Role } from "../../../roles/Roles";
+import { AddressRequest } from "./AddresRequest";
 
 export type BarbeariaResponse = {
-    name: String,
-    phone: String,
-    email: String,
-    password: String,
-    address: AddressRequest
-}
+  id: number;
+  name: String;
+  phone: String;
+  email: String;
+  password: String;
+  address: AddressRequest;
+  role: Role;
+};

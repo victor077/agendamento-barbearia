@@ -24,7 +24,7 @@ const FormLoginCliente = () => {
   const { tokenString } = useAuthentication();
 
   const handleClickJaCadastrado = () => {
-    navigate("../login/cliente");
+    navigate("../cadastro/cliente");
   };
 
   const handleNavigationCliente = () => {
@@ -43,17 +43,15 @@ const FormLoginCliente = () => {
     (entrada: LoginCliente) => AuthenticationClienteServe.logarCliente(entrada),
     {
       onSuccess: (response) => {
-        const { role } = response.body
-         if (role === "USER")
-          handleNavigationCliente()
-         else {
-           handleNavigateBarbeiro()
-         }
+        const { role } = response.body;
+        if (role === "USER") handleNavigationCliente();
+        else {
+          handleNavigateBarbeiro();
+        }
         console.log(response.body);
-
       },
-      onError: () => { 
-        alert("Senha ou email invalido")
+      onError: () => {
+        alert("Senha ou email invalido");
       },
     }
   );
@@ -85,6 +83,7 @@ const FormLoginCliente = () => {
             <Grid item xs={12}>
               <LabelStyled>Senha</LabelStyled>
               <InputStyled
+                type="password"
                 {...register("senha")}
                 placeholder="Digite sua senha"
               />

@@ -9,6 +9,7 @@ import SeusAgendamentos from "../../pages/Cliente/SeusAgendamentos/SeusAgendamen
 import TornaBarbeiro from "../../pages/Cliente/TornaBarbeiro";
 import { ThemeProvider } from "@mui/material";
 import { Light } from "../../styles/themes/Light";
+import Servicos from "../../pages/Cliente/Barbearias/Servicos";
 
 const RouterCliente = () => {
   return (
@@ -21,9 +22,10 @@ const RouterCliente = () => {
           path="cliente/seus-agendamentos"
           element={<SeusAgendamentos />}
         />
+
         <Route
-          path="cliente/barbearias/agendamento"
-          element={<BarbeariaAgendamento />}
+          path="cliente/barbearias/servicos/:nomeBarbearia"
+          element={<Servicos />}
         />
         <Route path="cliente/se-tornar-barbeiro" element={<TornaBarbeiro />} />
       </Routes>

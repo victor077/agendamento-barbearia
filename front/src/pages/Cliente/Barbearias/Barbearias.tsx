@@ -11,95 +11,53 @@ import ListItemText from "@mui/material/ListItemText";
 
 import Typography from "@mui/material/Typography";
 import useStyles from "./styled";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import HeaderCliente from "../Components/HeaderCliente/HeaderCliente";
 import { useQuery } from "react-query";
 import { BarbeariaClienteServe } from "../../../Packages/services/Cliente/Barbearias";
-import { BarbeariaResponse } from "../../../Packages/services/Cliente/Barbearias/models/BarbeariasResponse";
-
-const chamada = [
-  {
-    id: 1,
-    barbearia: "Kevin Cortes",
-    barbeiro: "Kevin",
-    cidade: "São Paulo",
-    celular: "11988634639",
-    atendimento: "Fechado",
-  },
-  {
-    id: 1,
-    barbearia: "Mela Cortes",
-    barbeiro: "Mela",
-    cidade: "São Paulo",
-    celular: "11988634639",
-    atendimento: "Fechado",
-  },
-  {
-    id: 1,
-    barbearia: "HG Cortes",
-    barbeiro: "Hugo",
-    cidade: "São Paulo",
-    celular: "11988634639",
-    atendimento: "Fechado",
-  },
-];
-
-
-// const { data } = useQuery({}['consultar-barbearias', () => BarbeariaClienteServe.getBarbearias()])
-// console.log(data);
-
+import barbearia from "../../../assets/barbearia.png";
 
 const Barbearias = () => {
+  const { data } = useQuery(["consultar-barbearias"], () =>
+    BarbeariaClienteServe.getBarbearias()
+  );
+
   const styled = useStyles();
   const navigate = useNavigate();
 
-  const navigateAgendamento = () => {
-    navigate("./agendamento");
+  const navigateAgendamento = (nomeBarbearia: string) => {
+    navigate("./servicos/" + nomeBarbearia);
   };
   return (
     <>
       <HeaderCliente />
       <Box sx={styled.main}>
-        {chamada.map((items) => (
+        {data?.body.map((items) => (
           <Tooltip title="Agendar">
             <Paper
               sx={styled.paper}
               elevation={3}
-              onClick={navigateAgendamento}
+              onClick={() => navigateAgendamento(items.name as string)}
             >
               <List>
                 <ListItem>
                   <ListItemAvatar sx={styled.itemAvatar}>
-                    <Avatar src="" alt="tenis" sx={styled.avatar} />
+                    <Avatar src={barbearia} alt="tenis" sx={styled.avatar} />
                   </ListItemAvatar>
                   <ListItemText
                     secondary={
                       <Box sx={styled.containerInformacoes}>
-                        <Typography sx={styled.titulo}>
-                          {items.barbearia}
-                        </Typography>
-                        <Typography sx={styled.subTitulo}>
-                          Barbeiro:
-                          <Typography sx={styled.informacoes}>
-                            {items.barbeiro}
-                          </Typography>
-                        </Typography>
+                        <Typography sx={styled.titulo}>{items.name}</Typography>
                         <Typography sx={styled.subTitulo}>
                           Cidade:
                           <Typography sx={styled.informacoes}>
-                            {items.cidade}
+                            {items.address.city}
                           </Typography>
                         </Typography>
                         <Typography sx={styled.subTitulo}>
                           Celular:
                           <Typography sx={styled.informacoes}>
-                            {items.celular}
-                          </Typography>
-                        </Typography>
-                        <Typography sx={styled.subTitulo}>
-                          Atendimento:
-                          <Typography sx={styled.informacoes}>
-                            {items.atendimento}
+                            {items.phone}
                           </Typography>
                         </Typography>
                       </Box>

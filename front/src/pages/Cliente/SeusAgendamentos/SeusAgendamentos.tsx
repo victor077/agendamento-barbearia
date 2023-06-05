@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -12,34 +12,64 @@ import TableRow from "@mui/material/TableRow";
 import useStyles from "./styled";
 import Typography from "@mui/material/Typography";
 import HeaderCliente from "../Components/HeaderCliente/HeaderCliente";
-
-type OutSeusAgendamentos = {
-  id_agendamento: number;
-  agendamento: Date;
-  barbearia: string;
-};
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
+import { db } from "../../../firebase";
 
 const SeusAgendamentos = () => {
   const styled = useStyles();
+  const agedamentoInitial = {
+    id: "",
+    barbeiro: "",
+    data: "",
+    hora: "",
+  };
+  const [agendamento, setAgendamento] = useState(agedamentoInitial);
+  useEffect(() => {
+    const consultarAgendamento = collection(db, "agendamento");
+    const data = query(consultarAgendamento, where("cliente", "==", "matheus"));
 
-  // masks.hammerTime = "HH:MM";
-  const rows: OutSeusAgendamentos[] = [
-    {
-      id_agendamento: 1,
-      agendamento: new Date(),
-      barbearia: "Kevin Cortes",
-    },
-    {
-      id_agendamento: 2,
-      agendamento: new Date(),
-      barbearia: "Mela Cortes",
-    },
-    {
-      id_agendamento: 1,
-      agendamento: new Date(),
-      barbearia: "Keus",
-    },
-  ];
+    const getAgendamentos = async () => {
+      const querySnapshot = await getDocs(data);
+      querySnapshot.forEach((doc) => {
+        if (!querySnapshot.empty) {
+          const doc = querySnapshot.docs[0];
+          const { id, barbeiro, data, hora } = doc.data();
+          setAgendamento({ id, barbeiro, data, hora });
+        } else {
+          return alert("nenhum agendamento encotrado");
+        }
+      });
+    };
+
+    getAgendamentos();
+  }, []);
+
+  const deleteAgendamento = async (agendamentoId) => {
+    try {
+      const agendamentoRef = doc(db, "agendamento", agendamentoId);
+      await deleteDoc(agendamentoRef);
+      console.log("Agendamento excluído com sucesso!");
+      alert("Agendamento excluído com sucesso!");
+      // Execute outras ações necessárias após a exclusão
+    } catch (error) {
+      console.error("Erro ao excluir agendamento:", error);
+      alert("Erro ao excluir agendamento" + error);
+
+      // Trate o erro de acordo com sua necessidade
+    }
+  };
+
+  const handleDeleteAgendamento = (agendamentoId) => {
+    deleteAgendamento(agendamentoId);
+    // Execute outras ações necessárias após a exclusão
+  };
   return (
     <>
       <HeaderCliente />
@@ -63,32 +93,35 @@ const SeusAgendamentos = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
-                <TableRow key={row.id_agendamento}>
-                  <TableCell align="center">
-                    <Typography sx={styled.textoCell}>
-                      {row.barbearia}
-                    </Typography>
-                  </TableCell>
-                  <TableCell align="center">
-                    <Typography sx={styled.textoCell}>data</Typography>
-                  </TableCell>
-                  <TableCell align="center">
-                    <Typography sx={styled.textoCell}>data</Typography>
-                  </TableCell>
-                  <TableCell align="center">
-                    <Button
-                      variant="contained"
-                      style={{
-                        backgroundColor: "#9D641F",
-                        color: "#fAfafa",
-                      }}
-                    >
-                      Cancelar
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
+              <TableRow>
+                <TableCell align="center">
+                  <Typography sx={styled.textoCell}>
+                    {agendamento.barbeiro}
+                  </Typography>
+                </TableCell>
+                <TableCell align="center">
+                  <Typography sx={styled.textoCell}>
+                    {agendamento.data}
+                  </Typography>
+                </TableCell>
+                <TableCell align="center">
+                  <Typography sx={styled.textoCell}>
+                    {agendamento.hora}
+                  </Typography>
+                </TableCell>
+                <TableCell align="center">
+                  <Button
+                    onClick={() => handleDeleteAgendamento(agendamento.id)}
+                    variant="contained"
+                    style={{
+                      backgroundColor: "#9D641F",
+                      color: "#fAfafa",
+                    }}
+                  >
+                    Cancelar
+                  </Button>
+                </TableCell>
+              </TableRow>
             </TableBody>
           </Table>
         </TableContainer>
