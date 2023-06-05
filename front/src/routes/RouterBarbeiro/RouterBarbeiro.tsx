@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import CadastroBarbeiro from "../../pages/Barbeiro/CadastroBarbeiro/CadastroBarbeiro";
 import LoginBarbeiro from "../../pages/Barbeiro/LoginBarbeiro/LoginBarbeiro";
 import Barbeiro from "../../pages/Barbeiro/Barbeiro";
+import AuthenticationProvider from "../../pages/Context/AuthenticationContext";
 
 const RouterBarbeiro = () => {
   return (

@@ -44,9 +44,7 @@ const AgendaBarbeiro = () => {
   return (
     <>
       <HeaderBarbeiro title="Seus Agendamentos" name="Victor" />
-      {chamada.map((cortes) => (
-        <CortesBarbeiros />
-      ))}
+      <CortesBarbeiros />
     </>
   );
 };

@@ -13,7 +13,6 @@ import { InputStyled } from "../../../../components/InputStyled/styled";
 import { LabelStyled } from "../../../../components/LabelStyled/styled";
 
 import useStyles from "./styled";
-import { useAuthentication } from "../../../Context/AuthenticationContext";
 import { useMutation } from "react-query";
 import { LoginCliente } from "../../../../Packages/services/Cliente/AuthenticationCliente/Models/LoginCliente";
 import { AuthenticationClienteServe } from "../../../../Packages/services/Cliente/AuthenticationCliente";
@@ -21,7 +20,6 @@ import { AuthenticationClienteServe } from "../../../../Packages/services/Client
 const FormLoginCliente = () => {
   const styled = useStyles();
   const navigate = useNavigate();
-  const { tokenString } = useAuthentication();
 
   const handleClickJaCadastrado = () => {
     navigate("../cadastro/cliente");
@@ -49,6 +47,7 @@ const FormLoginCliente = () => {
           handleNavigateBarbeiro();
         }
         console.log(response.body);
+        localStorage.setItem("dados usuario", JSON.stringify(response.body))
       },
       onError: () => {
         alert("Senha ou email invalido");
@@ -62,7 +61,6 @@ const FormLoginCliente = () => {
         email: values.email,
         password: values.senha,
       });
-      console.log("token", tokenString);
       console.log("submit", values);
     },
     [mutate]

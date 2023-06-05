@@ -11,7 +11,7 @@ import ListItemText from "@mui/material/ListItemText";
 
 import Typography from "@mui/material/Typography";
 import useStyles from "./styled";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import HeaderCliente from "../Components/HeaderCliente/HeaderCliente";
 import { useQuery } from "react-query";
 import { BarbeariaClienteServe } from "../../../Packages/services/Cliente/Barbearias";

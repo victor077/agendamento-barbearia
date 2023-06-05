@@ -4,10 +4,7 @@ import React, {
   useContext,
   useState,
 } from "react";
-import { useMutation } from "react-query";
-import { json } from "react-router-dom";
-import { AuthenticationClienteServe } from "../../Packages/services/Cliente/AuthenticationCliente";
-import { CadastroCliente } from "../../Packages/services/Cliente/AuthenticationCliente/Models/CadastroCliente";
+
 
 type AuthenticationContextValues = {
   tokenString: string;
@@ -16,12 +13,10 @@ type AuthenticationContextValues = {
 const AuthenticationContext = createContext({} as AuthenticationContextValues);
 
 const AuthenticationProvider = ({ children }: PropsWithChildren) => {
-  const [authentication, setAuthentication] = useState(false);
+  const [dadosUser, setDadosUser] = useState(JSON.parse(localStorage.getItem("") ?? ""));
 
   const tokenObjeto = localStorage.getItem("sessionToken");
   const tokenString = JSON.stringify(tokenObjeto);
-
-  const handleAuthentication = () => {};
 
   const values = {
     tokenString,
@@ -32,7 +27,7 @@ const AuthenticationProvider = ({ children }: PropsWithChildren) => {
     </AuthenticationContext.Provider>
   );
 };
-export const useAuthentication = () => {
+export const useLocalStorage = () => {
   const context = useContext(AuthenticationContext);
   if (!context) {
     throw new Error(

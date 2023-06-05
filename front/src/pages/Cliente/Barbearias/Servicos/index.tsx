@@ -25,26 +25,33 @@ const Servicos = () => {
   const { nomeBarbearia } = useParams();
   console.log("nome DO BARBEIRO", nomeBarbearia);
   const [dateTime, setDateTime] = useState("");
+  const dadosUsuario = JSON.parse(localStorage.getItem("dados usuario") ?? "")
+  console.log(dadosUsuario);
+
+  // const dadoCliente = dadosUsuario.
+
+
+
 
   const handleDateTimeChange = (event) => {
     setDateTime(event.target.value);
   };
 
   const handleAgendamento = async () => {
+    const dataObj = new Date(dateTime)
+    const data = new Intl.DateTimeFormat("pt-BR").format(dataObj)
+    const hora = dataObj.getHours() + ":" + dataObj.getMinutes()
     const agendamentoData = {
-      tipoServico: "Corte de cabelo", // Substitua com o tipo de serviço selecionado
-      dataHora: dateTime,
       barbeiro: nomeBarbearia,
+      cliente: dadosUsuario.name,
+      data,
+      hora
     };
 
     try {
-      // Consulta pelo ID do barbeiro
-      // Substitua pelo ID do barbeiro desejado
       const barbeiroDocRef = doc(db, "agendamento", nomeBarbearia ?? "0");
       const barbeiroSnapshot = await getDoc(barbeiroDocRef);
 
-      // Barbeiro encontrado
-      // Cria o agendamento com os dados fornecidos
       const docRef = await addDoc(
         collection(db, "agendamento"),
         agendamentoData

@@ -26,12 +26,15 @@ type ChamadaType = {
 const CortesBarbeiros = () => {
   const [agendamento, setAgendamento] = useState<ChamadaType[]>([]);
   const styled = useStyles();
+  const dadosUsuario = JSON.parse(localStorage.getItem("dados usuario") ?? "")
+  console.log(dadosUsuario.name);
+
 
   useEffect(() => {
     const consultarAgendamento = collection(db, "agendamento");
     const data = query(
       consultarAgendamento,
-      where("barbeiro", "==", "Barbearia Foxtrot"),
+      where("barbeiro", "==", dadosUsuario.name),
       limit(10)
     );
 
