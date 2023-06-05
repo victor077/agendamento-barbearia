@@ -45,7 +45,7 @@ const AgendaBarbeiro = () => {
     <>
       <HeaderBarbeiro title="Seus Agendamentos" name="Victor" />
       {chamada.map((cortes) => (
-        <CortesBarbeiros chamada={cortes} />
+        <CortesBarbeiros />
       ))}
     </>
   );
